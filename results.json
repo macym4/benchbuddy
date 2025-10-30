@@ -1,0 +1,14 @@
+{
+    "tests": [
+        {
+            "name": "Test solve_ik_for_pose",
+            "score": 0.0,
+            "max_score": 5,
+            "status": "failed",
+            "output": "Test Failed: np.False_ is not true : End effector position doesn't match goal position.\n"
+        }
+    ],
+    "leaderboard": [],
+    "execution_time": "0.01",
+    "score": 0.0
+}

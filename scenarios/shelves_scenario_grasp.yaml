@@ -1,0 +1,143 @@
+directives:
+- add_model:
+    name: iiwa
+    file: package://drake_models/iiwa_description/sdf/iiwa7_no_collision.sdf
+    default_joint_positions:
+        iiwa_joint_1: [0]
+        iiwa_joint_2: [0.1]
+        iiwa_joint_3: [0]
+        iiwa_joint_4: [-1.2]
+        iiwa_joint_5: [0]
+        iiwa_joint_6: [ 1.6]
+        iiwa_joint_7: [0]
+- add_weld:
+    parent: world
+    child: iiwa::iiwa_link_0
+
+- add_model:
+    name: wsg
+    file: package://manipulation/hydro/schunk_wsg_50_with_tip.sdf
+- add_weld:
+    parent: iiwa::iiwa_link_7
+    child: wsg::body
+    X_PC:
+        translation: [0, 0, 0.09]
+        rotation: !Rpy { deg: [90, 0, 90]}
+
+- add_model:
+    name: table
+    file: package://manipulation/table.sdf
+- add_weld:
+    parent: world
+    child: table::table_link
+    X_PC:
+        translation: [0.0, 0.0, -0.05]
+        rotation: !Rpy { deg: [0, 0, -90] }
+
+- add_model:
+    name: stand
+    file: package://manipulation/stand.sdf
+- add_weld:
+    parent: world
+    child: stand::stand_body
+    X_PC:
+        translation: [0.5, 0.0, 0.0]   # 50 cm in front of iiwa base
+        rotation: !Rpy { deg: [0, 0, 0] }
+
+# Shelves
+- add_model:
+    name: shelves
+    file: package://manipulation/shelves.sdf
+- add_weld:
+    parent: world
+    child: shelves::shelves_body
+    X_PC:
+        translation: [0.9, 0, 0.3995]   # was 0.9057, now ~25cm further in +x
+        rotation: !Rpy { deg: [0, 0, 180]}
+
+- add_model:
+    name: cheez_it
+    file: package://manipulation/hydro/003_cracker_box.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: cheez_it::base_link_cracker
+    X_PC:
+        translation: [0.05, -0.18, 0.245]
+        rotation: !Rpy { deg: [-90, 0, 0] }
+
+- add_model:
+    name: sugar_box
+    file: package://manipulation/hydro/004_sugar_box.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: sugar_box::base_link_sugar
+    X_PC:
+        translation: [0.1, 0.15, -0.035]
+        rotation: !Rpy { deg: [-90, 0, -90] }
+
+- add_model:
+    name: soup_can
+    file: package://manipulation/hydro/005_tomato_soup_can.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: soup_can::base_link_soup
+    X_PC:
+        translation: [0.1, -0.17, -0.072]
+        rotation: !Rpy { deg: [-90, 0, -90] }
+
+- add_model:
+    name: soup_can2
+    file: package://manipulation/hydro/005_tomato_soup_can.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: soup_can2::base_link_soup
+    X_PC:
+        translation: [0.1, -0.17, 0.03]
+        rotation: !Rpy { deg: [-90, 0, -90] }
+
+- add_model:
+    name: gelatin_box
+    file: package://manipulation/hydro/009_gelatin_box.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: gelatin_box::base_link_gelatin
+    X_PC:
+        translation: [0.1, 0.02, -0.087]
+        rotation: !Rpy { deg: [-90, 0, -90] }
+
+- add_model:
+    name: gelatin_box2
+    file: package://manipulation/hydro/009_gelatin_box.sdf
+- add_weld:
+    parent: shelves::shelves_body
+    child: gelatin_box2::base_link_gelatin
+    X_PC:
+        translation: [0.03, -0.01, -0.087]
+        rotation: !Rpy { deg: [-90, 0, -90] }
+
+- add_model:
+    name: mustard
+    file: package://manipulation/hydro/006_mustard_bottle.sdf
+- add_weld:
+    parent: stand::stand_body
+    child: mustard::base_link_mustard
+    X_PC:
+        translation: [-0.068, 0.1, 0.263]
+        rotation: !Rpy { deg: [0, 0, 0] }
+
+# Letter attached to the gripper
+- add_model:
+    name: I_letter
+    file: file:///workspaces/6.4210/06-Motion-Planning/assets/I_big_model/I.sdf
+- add_weld:
+    parent: wsg::body
+    child: I_letter::I_body_link
+    X_PC:
+        translation: [0.03, 0.2, 0.09]
+        rotation: !Rpy { deg: [0, 90, 180]}
+
+model_drivers:
+    iiwa: !IiwaDriver
+      control_mode: position_only
+      hand_model_name: wsg
+    wsg: !SchunkWsgDriver {}
