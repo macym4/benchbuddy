@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="commercial_flat_bench">
+    <!-- Set to true if you want the bench fixed to the world -->
+    <static>false</static>
+
+    <!-- One rigid body ("bench") made of three simple boxes:
+         - Pad: 1.20 x 0.30 x 0.06 m, top at z = 0.45 m
+         - Legs: two rectangular frames under the pad
+         All dimensions approximate a standard flat bench. -->
+    <link name="bench">
+      <!-- Inertial properties for the whole assembly
+           (approximated as a 1.20 x 0.50 x 0.45 m box, mass 25 kg). -->
+      <inertial>
+        <mass>25.0</mass>
+        <!-- Pose of the inertia frame relative to the link frame (at bench COM). -->
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <!-- About link frame at COM; units kg·m^2 -->
+          <ixx>0.943</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>3.422</iyy>
+          <iyz>0.0</iyz>
+          <izz>3.523</izz>
+        </inertia>
+      </inertial>
+
+      <!-- ========== PAD (visual + collision) ========== -->
+      <visual name="pad_visual">
+        <!-- Center of pad box is at z = 0.42 m (top at 0.45 m) -->
+        <pose>0 0 0.42 0 0 0</pose>
+        <geometry>
+          <box><size>1.20 0.30 0.06</size></box>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
+
+      <collision name="pad_collision">
+        <pose>0 0 0.42 0 0 0</pose>
+        <geometry>
+          <box><size>1.20 0.30 0.06</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <!-- Rubber-ish pad -->
+              <mu>0.9</mu>
+              <mu2>0.9</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>2.0e6</kp>
+              <kd>1.0</kd>
+              <min_depth>0.001</min_depth>
+              <max_vel>0.1</max_vel>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <!-- ========== LEFT LEG (visual + collision) ========== -->
+      <!-- A simple rectangular frame under the left half -->
+      <visual name="left_leg_visual">
+        <!-- Place ~0.35 m forward along x, centered at z=0.225 (half of 0.45 m leg height) -->
+        <pose>0.35 0 0.225 0 0 0</pose>
+        <geometry>
+          <box><size>0.05 0.50 0.45</size></box>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="left_leg_collision">
+        <pose>0.35 0 0.225 0 0 0</pose>
+        <geometry>
+          <box><size>0.05 0.50 0.45</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <!-- Rubber feet on the floor -->
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>2.0e6</kp>
+              <kd>1.0</kd>
+              <min_depth>0.001</min_depth>
+              <max_vel>0.1</max_vel>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+      <!-- ========== RIGHT LEG (visual + collision) ========== -->
+      <visual name="right_leg_visual">
+        <pose>-0.35 0 0.225 0 0 0</pose>
+        <geometry>
+          <box><size>0.05 0.50 0.45</size></box>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="right_leg_collision">
+        <pose>-0.35 0 0.225 0 0 0</pose>
+        <geometry>
+          <box><size>0.05 0.50 0.45</size></box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <ode>
+              <kp>2.0e6</kp>
+              <kd>1.0</kd>
+              <min_depth>0.001</min_depth>
+              <max_vel>0.1</max_vel>
+            </ode>
+          </contact>
+        </surface>
+      </collision>
+
+    </link>
+
+    <!-- Optional: an explicit model frame at the bench COM -->
+    <frame name="bench_com" attached_to="bench">
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>

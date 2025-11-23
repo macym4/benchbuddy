@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="torso">
+    <static>false</static>
+
+    <link name="torso">
+      <inertial>
+        <mass>10.0</mass>
+        <inertia>
+          <ixx>0.1</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.1</iyy><iyz>0</iyz>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Torso visual -->
+      <visual name="torso_vis">
+        <geometry>
+          <box>
+            <size>0.60 0.42 0.24</size>
+          </box>
+        </geometry>
+        <material><diffuse>0.4 0.2 0.2 1</diffuse></material>
+      </visual>
+
+      <collision name="torso_col">
+        <geometry>
+          <box>
+            <size>0.60 0.42 0.24</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
