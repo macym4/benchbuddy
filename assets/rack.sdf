@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="bench_rack">
+    <static>false</static>
+
+    <link name="rack">
+      <!-- Left upright -->
+      <visual name="upright_L_vis">
+        <pose>0.10  0.35 0.60 0 0 0</pose>
+        <geometry><box><size>0.08 0.08 1.20</size></box></geometry>
+        <material><diffuse>0.8 0.8 0.8 1</diffuse></material>
+      </visual>
+      <collision name="upright_L_col">
+        <pose>0.10  0.35 0.60 0 0 0</pose>
+        <geometry><box><size>0.08 0.08 1.20</size></box></geometry>
+      </collision>
+
+      <!-- Right upright -->
+      <visual name="upright_R_vis">
+        <pose>0.10 -0.35 0.60 0 0 0</pose>
+        <geometry><box><size>0.08 0.08 1.20</size></box></geometry>
+        <material><diffuse>0.8 0.8 0.8 1</diffuse></material>
+      </visual>
+      <collision name="upright_R_col">
+        <pose>0.10 -0.35 0.60 0 0 0</pose>
+        <geometry><box><size>0.08 0.08 1.20</size></box></geometry>
+      </collision>
+
+      <!-- Base -->
+      <visual name="base_cross_vis">
+        <pose>0.10 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.10 0.90 0.08</size></box></geometry>
+        <material><diffuse>0.7 0.7 0.7 1</diffuse></material>
+      </visual>
+      <collision name="base_cross_col">
+        <pose>0.10 0 0.04 0 0 0</pose>
+        <geometry><box><size>0.10 0.90 0.08</size></box></geometry>
+      </collision>
+
+      <!-- J-hooks (touching uprights, on lifter side, 10 in lower) -->
+      <visual name="hook_L_vis">
+        <pose>0.01  0.35 0.826 0 0 3.14159265359</pose>
+        <geometry><box><size>0.16 0.10 0.03</size></box></geometry>
+        <material><diffuse>0.3 0.3 0.3 1</diffuse></material>
+      </visual>
+      <collision name="hook_L_col">
+        <pose>0.01  0.35 0.826 0 0 3.14159265359</pose>
+        <geometry><box><size>0.16 0.10 0.03</size></box></geometry>
+      </collision>
+      <visual name="hook_L_lip_vis">
+        <pose>-0.07  0.35 0.832 0 0 3.14159265359</pose>
+        <geometry><box><size>0.02 0.10 0.04</size></box></geometry>
+        <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="hook_L_lip_col">
+        <pose>-0.07  0.35 0.832 0 0 3.14159265359</pose>
+        <geometry><box><size>0.02 0.10 0.04</size></box></geometry>
+      </collision>
+
+      <visual name="hook_R_vis">
+        <pose>0.01 -0.35 0.826 0 0 3.14159265359</pose>
+        <geometry><box><size>0.16 0.10 0.03</size></box></geometry>
+        <material><diffuse>0.3 0.3 0.3 1</diffuse></material>
+      </visual>
+      <collision name="hook_R_col">
+        <pose>0.01 -0.35 0.826 0 0 3.14159265359</pose>
+        <geometry><box><size>0.16 0.10 0.03</size></box></geometry>
+      </collision>
+      <visual name="hook_R_lip_vis">
+        <pose>-0.07 -0.35 0.832 0 0 3.14159265359</pose>
+        <geometry><box><size>0.02 0.10 0.04</size></box></geometry>
+        <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="hook_R_lip_col">
+        <pose>-0.07 -0.35 0.832 0 0 3.14159265359</pose>
+        <geometry><box><size>0.02 0.10 0.04</size></box></geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>

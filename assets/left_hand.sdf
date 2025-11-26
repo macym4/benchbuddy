@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="left_hand">
+    <static>false</static>
+    <link name="left_hand">
+      <inertial><mass>0.5</mass><pose>0 0 0 0 0 0</pose>
+        <inertia><ixx>0.001</ixx><ixy>0</ixy><ixz>0</ixz><iyy>0.001</iyy><iyz>0</iyz><izz>0.001</izz></inertia>
+      </inertial>
+      <visual name="hand_palm_vis">
+        <pose>0 0 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.08 0.08 0.05</size></box></geometry>
+        <material><diffuse>0.95 0.75 0.45 1</diffuse></material>
+      </visual>
+      <visual name="hand_finger_upper_vis">
+        <pose>0 0.045 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.05 0.03 0.05</size></box></geometry>
+        <material><diffuse>0.95 0.75 0.45 1</diffuse></material>
+      </visual>
+      <visual name="hand_finger_lower_vis">
+        <pose>0 -0.045 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.05 0.03 0.05</size></box></geometry>
+        <material><diffuse>0.95 0.75 0.45 1</diffuse></material>
+      </visual>
+      <collision name="hand_palm_col">
+        <pose>0 0 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.08 0.08 0.05</size></box></geometry>
+      </collision>
+      <collision name="hand_finger_upper_col">
+        <pose>0 0.045 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.05 0.03 0.05</size></box></geometry>
+      </collision>
+      <collision name="hand_finger_lower_col">
+        <pose>0 -0.045 0 3.14159265359 3.14159265359 0</pose>
+        <geometry><box><size>0.05 0.03 0.05</size></box></geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
